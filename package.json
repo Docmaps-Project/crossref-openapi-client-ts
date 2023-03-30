@@ -6,15 +6,16 @@
         "type": "git",
         "url": "https://github.com/docmaps-project/crossref-openapi-client-ts.git"
     },
-    "main": "dist/api.js",
-    "types": "dist/api.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/CrossrefClient.d.ts",
     "scripts": {
         "generate": "openapi --input ./crossref-swagger.json --output ./src --name CrossrefClient",
         "clean": "rm -Rf dist node_modules/ *.js",
         "build": "tsc",
-        "test": "npm run build && node dist/client.js"
+        "test": "npm run build && node dist/index.js"
     },
-    "author": "Eve @github.com/ships",
+    "exports": "./dist/index.js",
+    "author": "eve @github.com/ships",
     "license": "MIT",
     "dependencies": {
         "bluebird": "^3.5.0",
