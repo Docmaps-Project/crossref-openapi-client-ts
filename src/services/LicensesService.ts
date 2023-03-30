@@ -86,21 +86,37 @@ export class LicensesService {
      *
      * ##
      *
-     * @param query Exposes the ability to free text query certain fields
-     * @param cursor Exposes the ability to deep page through large result sets, where offset would cause performance problems
-     * @param rows The number of rows per page
-     * @param mailto The email address to identify yourself and be in the "polite pool"
-     * @param offset The number of rows to skip before returning
      * @returns LicensesMessage A list of licenses
      * @throws ApiError
      */
-    public getLicenses(
+    public getLicenses({
+        query,
+        cursor,
+        rows,
+        mailto,
+        offset,
+    }: {
+        /**
+         * Exposes the ability to free text query certain fields
+         */
         query?: string,
+        /**
+         * Exposes the ability to deep page through large result sets, where offset would cause performance problems
+         */
         cursor?: string,
+        /**
+         * The number of rows per page
+         */
         rows?: number,
+        /**
+         * The email address to identify yourself and be in the "polite pool"
+         */
         mailto?: string,
+        /**
+         * The number of rows to skip before returning
+         */
         offset?: number,
-    ): CancelablePromise<LicensesMessage> {
+    }): CancelablePromise<LicensesMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/licenses',

@@ -455,35 +455,69 @@ export class PrefixesService {
      *
      * ##
      *
-     * @param prefix
-     * @param rows The number of rows per page
-     * @param order Combined with sort can be used to specify the order of results, e.g. asc or desc
-     * @param facet Exposes the ability to retrieve counts for pre-defined facets e.g. `type-name:*` returns counts of all works by type
-     * @param sample Exposes the ability to return `N` randomly sampled items
-     * @param sort Exposes the ability to sort results by a certain field, e.g. `score`
-     * @param offset The number of rows to skip before returning
-     * @param mailto The email address to identify yourself and be in the "polite pool"
-     * @param select Exposes the ability to select certain fields, supports a comma separated list of fields, e.g. `DOI,volume`
-     * @param query Exposes the ability to free text query certain fields
-     * @param filter Exposes the ability to filter by certain fields, supports a comma separated list of lucene filters, e.g. `content-domain:psychoceramics.labs.crossref.org`
-     * @param cursor Exposes the ability to deep page through large result sets, where offset would cause performance problems
      * @returns WorksMessage A list of works
      * @throws ApiError
      */
-    public getPrefixesWorks(
+    public getPrefixesWorks({
+        prefix,
+        rows,
+        order,
+        facet,
+        sample,
+        sort,
+        offset,
+        mailto,
+        select,
+        query,
+        filter,
+        cursor,
+    }: {
         prefix: string,
+        /**
+         * The number of rows per page
+         */
         rows?: number,
+        /**
+         * Combined with sort can be used to specify the order of results, e.g. asc or desc
+         */
         order?: string,
+        /**
+         * Exposes the ability to retrieve counts for pre-defined facets e.g. `type-name:*` returns counts of all works by type
+         */
         facet?: string,
+        /**
+         * Exposes the ability to return `N` randomly sampled items
+         */
         sample?: number,
+        /**
+         * Exposes the ability to sort results by a certain field, e.g. `score`
+         */
         sort?: string,
+        /**
+         * The number of rows to skip before returning
+         */
         offset?: number,
+        /**
+         * The email address to identify yourself and be in the "polite pool"
+         */
         mailto?: string,
+        /**
+         * Exposes the ability to select certain fields, supports a comma separated list of fields, e.g. `DOI,volume`
+         */
         select?: string,
+        /**
+         * Exposes the ability to free text query certain fields
+         */
         query?: string,
+        /**
+         * Exposes the ability to filter by certain fields, supports a comma separated list of lucene filters, e.g. `content-domain:psychoceramics.labs.crossref.org`
+         */
         filter?: string,
+        /**
+         * Exposes the ability to deep page through large result sets, where offset would cause performance problems
+         */
         cursor?: string,
-    ): CancelablePromise<WorksMessage> {
+    }): CancelablePromise<WorksMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/prefixes/{prefix}/works',
@@ -508,13 +542,14 @@ export class PrefixesService {
 
     /**
      * Returns metadata for the DOI owner prefix, as an example use prefix 10.1016
-     * @param prefix
      * @returns PrefixMessage The prefix data identified by {prefix}.
      * @throws ApiError
      */
-    public getPrefixes(
+    public getPrefixes({
+        prefix,
+    }: {
         prefix: string,
-    ): CancelablePromise<PrefixMessage> {
+    }): CancelablePromise<PrefixMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/prefixes/{prefix}',

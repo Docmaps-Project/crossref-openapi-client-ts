@@ -456,35 +456,72 @@ export class FundersService {
      *
      * ##
      *
-     * @param id The id of the funder
-     * @param rows The number of rows per page
-     * @param order Combined with sort can be used to specify the order of results, e.g. asc or desc
-     * @param facet Exposes the ability to retrieve counts for pre-defined facets e.g. `type-name:*` returns counts of all works by type
-     * @param sample Exposes the ability to return `N` randomly sampled items
-     * @param sort Exposes the ability to sort results by a certain field, e.g. `score`
-     * @param offset The number of rows to skip before returning
-     * @param mailto The email address to identify yourself and be in the "polite pool"
-     * @param select Exposes the ability to select certain fields, supports a comma separated list of fields, e.g. `DOI,volume`
-     * @param query Exposes the ability to free text query certain fields
-     * @param filter Exposes the ability to filter by certain fields, supports a comma separated list of lucene filters, e.g. `content-domain:psychoceramics.labs.crossref.org`
-     * @param cursor Exposes the ability to deep page through large result sets, where offset would cause performance problems
      * @returns WorksMessage A list of works
      * @throws ApiError
      */
-    public getFundersWorks(
+    public getFundersWorks({
+        id,
+        rows,
+        order,
+        facet,
+        sample,
+        sort,
+        offset,
+        mailto,
+        select,
+        query,
+        filter,
+        cursor,
+    }: {
+        /**
+         * The id of the funder
+         */
         id: string,
+        /**
+         * The number of rows per page
+         */
         rows?: number,
+        /**
+         * Combined with sort can be used to specify the order of results, e.g. asc or desc
+         */
         order?: string,
+        /**
+         * Exposes the ability to retrieve counts for pre-defined facets e.g. `type-name:*` returns counts of all works by type
+         */
         facet?: string,
+        /**
+         * Exposes the ability to return `N` randomly sampled items
+         */
         sample?: number,
+        /**
+         * Exposes the ability to sort results by a certain field, e.g. `score`
+         */
         sort?: string,
+        /**
+         * The number of rows to skip before returning
+         */
         offset?: number,
+        /**
+         * The email address to identify yourself and be in the "polite pool"
+         */
         mailto?: string,
+        /**
+         * Exposes the ability to select certain fields, supports a comma separated list of fields, e.g. `DOI,volume`
+         */
         select?: string,
+        /**
+         * Exposes the ability to free text query certain fields
+         */
         query?: string,
+        /**
+         * Exposes the ability to filter by certain fields, supports a comma separated list of lucene filters, e.g. `content-domain:psychoceramics.labs.crossref.org`
+         */
         filter?: string,
+        /**
+         * Exposes the ability to deep page through large result sets, where offset would cause performance problems
+         */
         cursor?: string,
-    ): CancelablePromise<WorksMessage> {
+    }): CancelablePromise<WorksMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/funders/{id}/works',
@@ -509,13 +546,17 @@ export class FundersService {
 
     /**
      * Returns metadata for specified funder **and** its suborganizations, as an example use id 501100006004
-     * @param id The id of the funder
      * @returns FunderMessage The funder identified by {id}.
      * @throws ApiError
      */
-    public getFunders(
+    public getFunders({
+        id,
+    }: {
+        /**
+         * The id of the funder
+         */
         id: string,
-    ): CancelablePromise<FunderMessage> {
+    }): CancelablePromise<FunderMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/funders/{id}',
@@ -616,23 +657,42 @@ export class FundersService {
      *
      * ##
      *
-     * @param filter Exposes the ability to search funders by location using a Lucene based syntax
-     * @param cursor Exposes the ability to deep page through large result sets, where offset would cause performance problems
-     * @param query Exposes the ability to free text query certain fields
-     * @param rows The number of rows per page
-     * @param mailto The email address to identify yourself and be in the "polite pool"
-     * @param offset The number of rows to skip before returning
      * @returns FundersMessage A list of funders.
      * @throws ApiError
      */
-    public getFunders1(
+    public getFunders1({
+        filter,
+        cursor,
+        query,
+        rows,
+        mailto,
+        offset,
+    }: {
+        /**
+         * Exposes the ability to search funders by location using a Lucene based syntax
+         */
         filter?: string,
+        /**
+         * Exposes the ability to deep page through large result sets, where offset would cause performance problems
+         */
         cursor?: string,
+        /**
+         * Exposes the ability to free text query certain fields
+         */
         query?: string,
+        /**
+         * The number of rows per page
+         */
         rows?: number,
+        /**
+         * The email address to identify yourself and be in the "polite pool"
+         */
         mailto?: string,
+        /**
+         * The number of rows to skip before returning
+         */
         offset?: number,
-    ): CancelablePromise<FundersMessage> {
+    }): CancelablePromise<FundersMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/funders',

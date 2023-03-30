@@ -81,21 +81,37 @@ export class JournalsService {
      *
      * ##
      *
-     * @param cursor Exposes the ability to deep page through large result sets, where offset would cause performance problems
-     * @param query Exposes the ability to free text query certain fields
-     * @param rows The number of rows per page
-     * @param mailto The email address to identify yourself and be in the "polite pool"
-     * @param offset The number of rows to skip before returning
      * @returns JournalsMessage A list of journals
      * @throws ApiError
      */
-    public getJournals(
+    public getJournals({
+        cursor,
+        query,
+        rows,
+        mailto,
+        offset,
+    }: {
+        /**
+         * Exposes the ability to deep page through large result sets, where offset would cause performance problems
+         */
         cursor?: string,
+        /**
+         * Exposes the ability to free text query certain fields
+         */
         query?: string,
+        /**
+         * The number of rows per page
+         */
         rows?: number,
+        /**
+         * The email address to identify yourself and be in the "polite pool"
+         */
         mailto?: string,
+        /**
+         * The number of rows to skip before returning
+         */
         offset?: number,
-    ): CancelablePromise<JournalsMessage> {
+    }): CancelablePromise<JournalsMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/journals',
@@ -111,13 +127,17 @@ export class JournalsService {
 
     /**
      * Returns information about a journal with the given ISSN, as an example use ISSN 03064530
-     * @param issn The ISSN identifier associated with the journal
      * @returns JournalMessage The journal identified by {issn}.
      * @throws ApiError
      */
-    public getJournals1(
+    public getJournals1({
+        issn,
+    }: {
+        /**
+         * The ISSN identifier associated with the journal
+         */
         issn: string,
-    ): CancelablePromise<JournalMessage> {
+    }): CancelablePromise<JournalMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/journals/{issn}',
@@ -574,35 +594,72 @@ export class JournalsService {
      *
      * ##
      *
-     * @param issn The ISSN identifier associated with the journal
-     * @param rows The number of rows per page
-     * @param order Combined with sort can be used to specify the order of results, e.g. asc or desc
-     * @param facet Exposes the ability to retrieve counts for pre-defined facets e.g. `type-name:*` returns counts of all works by type
-     * @param sample Exposes the ability to return `N` randomly sampled items
-     * @param sort Exposes the ability to sort results by a certain field, e.g. `score`
-     * @param offset The number of rows to skip before returning
-     * @param mailto The email address to identify yourself and be in the "polite pool"
-     * @param select Exposes the ability to select certain fields, supports a comma separated list of fields, e.g. `DOI,volume`
-     * @param query Exposes the ability to free text query certain fields
-     * @param filter Exposes the ability to filter by certain fields, supports a comma separated list of lucene filters, e.g. `content-domain:psychoceramics.labs.crossref.org`
-     * @param cursor Exposes the ability to deep page through large result sets, where offset would cause performance problems
      * @returns WorksMessage A list of works
      * @throws ApiError
      */
-    public getJournalsWorks(
+    public getJournalsWorks({
+        issn,
+        rows,
+        order,
+        facet,
+        sample,
+        sort,
+        offset,
+        mailto,
+        select,
+        query,
+        filter,
+        cursor,
+    }: {
+        /**
+         * The ISSN identifier associated with the journal
+         */
         issn: string,
+        /**
+         * The number of rows per page
+         */
         rows?: number,
+        /**
+         * Combined with sort can be used to specify the order of results, e.g. asc or desc
+         */
         order?: string,
+        /**
+         * Exposes the ability to retrieve counts for pre-defined facets e.g. `type-name:*` returns counts of all works by type
+         */
         facet?: string,
+        /**
+         * Exposes the ability to return `N` randomly sampled items
+         */
         sample?: number,
+        /**
+         * Exposes the ability to sort results by a certain field, e.g. `score`
+         */
         sort?: string,
+        /**
+         * The number of rows to skip before returning
+         */
         offset?: number,
+        /**
+         * The email address to identify yourself and be in the "polite pool"
+         */
         mailto?: string,
+        /**
+         * Exposes the ability to select certain fields, supports a comma separated list of fields, e.g. `DOI,volume`
+         */
         select?: string,
+        /**
+         * Exposes the ability to free text query certain fields
+         */
         query?: string,
+        /**
+         * Exposes the ability to filter by certain fields, supports a comma separated list of lucene filters, e.g. `content-domain:psychoceramics.labs.crossref.org`
+         */
         filter?: string,
+        /**
+         * Exposes the ability to deep page through large result sets, where offset would cause performance problems
+         */
         cursor?: string,
-    ): CancelablePromise<WorksMessage> {
+    }): CancelablePromise<WorksMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/journals/{issn}/works',

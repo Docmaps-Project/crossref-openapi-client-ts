@@ -9,10 +9,9 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "generate": "openapi --input ./crossref-swagger.json --output ./src --name CrossrefClient",
+        "generate": "openapi --input ./crossref-swagger.json --output ./src --name CrossrefClient --useOptions --useUnionTypes",
         "clean": "rm -Rf dist node_modules/ *.js",
         "build": "tsc",
-        "postinstall": "tsc",
         "test": "npm run build && node dist/index.js"
     },
     "exports": "./dist/index.js",

@@ -13,13 +13,14 @@ export class DepositsService {
 
     /**
      * Returns information about a deposit.
-     * @param id
      * @returns DepositMessage The deposit identified by {id}.
      * @throws ApiError
      */
-    public getDeposits(
+    public getDeposits({
+        id,
+    }: {
         id: string,
-    ): CancelablePromise<DepositMessage> {
+    }): CancelablePromise<DepositMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/deposits/{id}',
@@ -85,21 +86,37 @@ export class DepositsService {
      *
      * ##
      *
-     * @param filter Exposes the ability to filter by certain fields, supports a comma separated list of lucene filters, e.g. `content-domain:psychoceramics.labs.crossref.org`
-     * @param query Exposes the ability to free text query certain fields
-     * @param rows The number of rows per page
-     * @param mailto The email address to identify yourself and be in the "polite pool"
-     * @param offset The number of rows to skip before returning
      * @returns DepositsMessage A list of deposits
      * @throws ApiError
      */
-    public getDeposits1(
+    public getDeposits1({
+        filter,
+        query,
+        rows,
+        mailto,
+        offset,
+    }: {
+        /**
+         * Exposes the ability to filter by certain fields, supports a comma separated list of lucene filters, e.g. `content-domain:psychoceramics.labs.crossref.org`
+         */
         filter?: string,
+        /**
+         * Exposes the ability to free text query certain fields
+         */
         query?: string,
+        /**
+         * The number of rows per page
+         */
         rows?: number,
+        /**
+         * The email address to identify yourself and be in the "polite pool"
+         */
         mailto?: string,
+        /**
+         * The number of rows to skip before returning
+         */
         offset?: number,
-    ): CancelablePromise<DepositsMessage> {
+    }): CancelablePromise<DepositsMessage> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/deposits',
@@ -115,20 +132,26 @@ export class DepositsService {
 
     /**
      * Deposit new content.
-     * @param test Is the deposit for test purposes?
      * @returns DepositMessage The newly created deposit.
      * @throws ApiError
      */
-    public postDeposits(
+    public postDeposits({
+        data,
+        test,
+    }: {
+        data: string,
+        /**
+         * Is the deposit for test purposes?
+         */
         test?: boolean,
-    ): CancelablePromise<DepositMessage> {
+    }): CancelablePromise<DepositMessage> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/deposits',
             query: {
                 'test': test,
             },
-            body: {},
+            body: data,
         });
     }
 
