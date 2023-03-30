@@ -9,3 +9,8 @@ at [`https://api.crossref.org/swagger-docs`](https://api.crossref.org/swagger-do
 that there are some syntax errors in that specification. I am looking for a more stable source, but at the moment, the [version of this
 file committed to this repo](/crossref-swagger.json) has a few minor variations, namely adding specs for path parameters that were missing
 and correcting the use of some arrays.
+
+
+### Notes
+
+Licensed under MIT Open source license.
