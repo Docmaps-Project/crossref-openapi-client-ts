@@ -1,6 +1,0 @@
-disallowAdditionalPropertiesIfNotPresent: false
-npmName: crossref-openapi-client-ts
-npmVersion: 0.1.0
-supportsES6: true
-nullSafeAdditionalProps: true # tbd
-legacyDiscriminatorBehavior: false # tbd
