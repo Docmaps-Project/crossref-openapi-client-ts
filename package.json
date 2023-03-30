@@ -12,7 +12,7 @@
         "generate": "openapi --input ./crossref-swagger.json --output ./src --name CrossrefClient",
         "clean": "rm -Rf dist node_modules/ *.js",
         "build": "tsc",
-        "postinstall": "build",
+        "postinstall": "tsc",
         "test": "npm run build && node dist/index.js"
     },
     "exports": "./dist/index.js",
