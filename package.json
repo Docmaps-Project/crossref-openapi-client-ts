@@ -7,7 +7,7 @@
         "url": "https://github.com/docmaps-project/crossref-openapi-client-ts.git"
     },
     "main": "dist/index.js",
-    "types": "dist/CrossrefClient.d.ts",
+    "types": "dist/index.d.ts",
     "scripts": {
         "generate": "openapi --input ./crossref-swagger.json --output ./src --name CrossrefClient",
         "clean": "rm -Rf dist node_modules/ *.js",
