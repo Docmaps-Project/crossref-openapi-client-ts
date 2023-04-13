@@ -3290,7 +3290,10 @@
           }
         },
         "relation": {
-          "$ref": "#/definitions/WorkRelation"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WorkRelation"
+          }
         },
         "ISSN": {
           "type": "array",

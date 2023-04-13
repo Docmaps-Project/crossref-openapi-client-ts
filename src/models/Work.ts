@@ -85,7 +85,7 @@ export type Work = {
     'alternative-id'?: Array<string>;
     URL: string;
     archive?: Array<string>;
-    relation?: WorkRelation;
+    relation?: Array<WorkRelation>;
     ISSN?: Array<string>;
     'issn-type'?: Array<WorkISSNType>;
     subject?: Array<string>;
