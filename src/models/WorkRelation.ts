@@ -2,6 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { WorksMessageMessageItemsRelationJava_lang_string39101 } from './WorksMessageMessageItemsRelationJava_lang_string39101';
+import type { WorkRelationEntry } from './WorkRelationEntry';
 
-export type WorkRelation = Record<string, WorksMessageMessageItemsRelationJava_lang_string39101>;
+export type WorkRelation = Array<WorkRelationEntry>;

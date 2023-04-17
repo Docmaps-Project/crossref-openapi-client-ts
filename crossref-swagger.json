@@ -3290,8 +3290,8 @@
           }
         },
         "relation": {
-          "type": "array",
-          "items": {
+          "type": "object",
+          "additionalProperties": {
             "$ref": "#/definitions/WorkRelation"
           }
         },
@@ -3650,9 +3650,9 @@
       ]
     },
     "WorkRelation": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "#/definitions/WorksMessageMessageItemsRelationJava.lang.string39101"
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/WorkRelationEntry"
       }
     },
     "WorkReview": {
@@ -3820,7 +3820,7 @@
         "label"
       ]
     },
-    "WorksMessageMessageItemsRelationJava.lang.string39101": {
+    "WorkRelationEntry": {
       "type": "object",
       "properties": {
         "id-type": {

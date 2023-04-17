@@ -91,12 +91,12 @@ export type { WorkMessageMessageAssertionExplanation } from './models/WorkMessag
 export type { WorkMessageMessageAssertionGroup } from './models/WorkMessageMessageAssertionGroup';
 export type { WorkMessageMessageRelationJava_lang_string39107 } from './models/WorkMessageMessageRelationJava_lang_string39107';
 export type { WorkRelation } from './models/WorkRelation';
+export type { WorkRelationEntry } from './models/WorkRelationEntry';
 export type { WorkReview } from './models/WorkReview';
 export type { Works } from './models/Works';
 export type { WorksMessage } from './models/WorksMessage';
 export type { WorksMessageMessageItemsAssertionExplanation } from './models/WorksMessageMessageItemsAssertionExplanation';
 export type { WorksMessageMessageItemsAssertionGroup } from './models/WorksMessageMessageItemsAssertionGroup';
-export type { WorksMessageMessageItemsRelationJava_lang_string39101 } from './models/WorksMessageMessageItemsRelationJava_lang_string39101';
 export type { WorksMessageMessageItemsRelationJava_lang_string39102 } from './models/WorksMessageMessageItemsRelationJava_lang_string39102';
 export type { WorksMessageMessageItemsRelationJava_lang_string39103 } from './models/WorksMessageMessageItemsRelationJava_lang_string39103';
 export type { WorksMessageMessageItemsRelationJava_lang_string39104 } from './models/WorksMessageMessageItemsRelationJava_lang_string39104';
