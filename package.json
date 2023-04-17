@@ -12,8 +12,17 @@
         "generate": "openapi --input ./crossref-swagger.json --output ./src --name CrossrefClient --useOptions --useUnionTypes",
         "clean": "rm -Rf dist node_modules/ *.js",
         "build": "tsc",
+        "prepare": "tsc",
         "test": "npm run build && node dist/index.js"
     },
+    "files": [
+        "dist/",
+        "tsconfig.json",
+        "README.md",
+        "package.json",
+        "crossref-swagger.json",
+        "LICENSE"
+    ],
     "exports": "./dist/index.js",
     "author": "eve @github.com/ships",
     "license": "MIT",
@@ -27,6 +36,7 @@
         "@types/node": "^12",
         "@types/request": "^2.48.8",
         "openapi-typescript-codegen": "^0.23.0",
+        "semantic-release": "^21.0.1",
         "typedoc": "^0.23.28",
         "typescript": "^4.0"
     }
