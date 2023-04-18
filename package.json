@@ -13,7 +13,7 @@
         "clean": "rm -Rf dist node_modules/ *.js",
         "build": "tsc",
         "prepare": "tsc",
-        "test": "npm run build && node dist/index.js"
+        "test": "tsc && node dist/index.js && ava"
     },
     "files": [
         "dist/",
@@ -36,8 +36,22 @@
         "@types/node": "^12",
         "@types/request": "^2.48.8",
         "openapi-typescript-codegen": "^0.24.0",
+        "ava": "^5.2.0",
         "semantic-release": "^21.0.1",
+        "ts-node": "^10.9.1",
         "typedoc": "^0.23.28",
         "typescript": "^4.0"
+    },
+    "ava": {
+        "extensions": {
+            "ts": "module"
+        },
+        "nodeArguments": [
+            "--loader=ts-node/esm",
+            "--experimental-specifier-resolution=node"
+        ],
+        "files": [
+            "**/*.test.ts"
+        ]
     }
 }
