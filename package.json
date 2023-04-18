@@ -10,6 +10,8 @@
     "types": "dist/index.d.ts",
     "scripts": {
         "generate": "openapi --input ./crossref-swagger.json --output ./src --name CrossrefClient --useOptions --useUnionTypes",
+        "docs": "typedoc src/index.ts",
+        "docs:check": "npm run docs && git add -N . && git diff --exit-code -I 'Defined in.*blob'",
         "clean": "rm -Rf dist node_modules/ *.js",
         "build": "tsc",
         "prepare": "tsc",
