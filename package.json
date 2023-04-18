@@ -35,7 +35,7 @@
         "@types/bluebird": "^3.5.33",
         "@types/node": "^12",
         "@types/request": "^2.48.8",
-        "openapi-typescript-codegen": "^0.23.0",
+        "openapi-typescript-codegen": "^0.24.0",
         "semantic-release": "^21.0.1",
         "typedoc": "^0.23.28",
         "typescript": "^4.0"
