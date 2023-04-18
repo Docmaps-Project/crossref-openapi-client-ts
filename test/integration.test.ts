@@ -38,13 +38,15 @@ test('Integration test: /works?...', async (t) => {
   t.timeout(30000, 'These tests make actual API calls; crossref may be slow.')
   const MultiWorks = await CLIENT.works.getWorks1({
     rows: 2,
+    offset: 1000,
     order: 'asc',
     sort: 'created',
-    filter: 'prefix:10.1101',
+    filter: 'prefix:10.21428', // PubPub DOI prefix
+    // alternative prefix: 10.1162 for Rapid Review 19
   })
   t.is(MultiWorks.status, 'ok')
   // TODO : include this response key in multi-works
   //    "items-per-page":2
-  t.deepEqual(MultiWorks.message.items[0]?.title, ["Assembly, Annotation, and Integration of UNIGENE Clusters into the Human Genome Draft"])
-  t.deepEqual(MultiWorks.message.items[1]?.title, ["INNER NO OUTER regulates abaxial- adaxial patterning in Arabidopsis ovules"])
+  t.deepEqual(MultiWorks.message.items[0]?.title, ["GroupMe to SecondLife"])
+  t.deepEqual(MultiWorks.message.items[1]?.title, ["GroupMe - Analog Crime Problem"])
 })
