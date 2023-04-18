@@ -1,26 +1,12 @@
-name: Release all packages with semantic release
-
-permissions:
-  actions: read
-  checks: read
-  contents: write
-  packages: write
+name: Test crossref API
 
 on:
   push:
-    branches:
-      - main
-
-env:
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  test:
-    uses: ./.github/workflows/integration-tests.yaml
-  nodejs_release:
-    needs:
-      - test
-
+  nodejs_test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -60,8 +46,10 @@ jobs:
         run: |
           pnpm install;
 
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+      - name: Verify builds
+        run: |
+          pnpm build;
+
+      - name: Test
+        run: |
+          pnpm test;
