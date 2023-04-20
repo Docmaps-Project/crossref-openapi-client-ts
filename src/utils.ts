@@ -1,12 +1,17 @@
 import { Date as GDate, DateParts } from './gen'
 
+/**
+ * Known representations of dates in Crossref. Possibly more representations
+ * will be discovered later.
+ */
 export type Datemorph = GDate | DateParts
 
-
+/**
+ * Options when parsing complex Crossref date-types.
+ *
+ * @property {boolean} strict   - If set, fail when the date type is internally inconsistent.
+ */
 export type DateParseOpts = {
-  // strict means we error if:
-  // - any existing field is bogus data
-  // - any two fields do not agree
   strict: boolean
 }
 
@@ -14,6 +19,12 @@ const DefaultOpts: DateParseOpts = {
   strict: true
 }
 
+/**
+ * Convert any allowed Crossref date type into an ISO String.
+ *
+ * @param {Datemorph}     d       - the date to parse and convert
+ * @param {DateParseOpts} opts    - parsing options
+ */
 export function DatemorphISOString(d: Datemorph, opts: DateParseOpts = DefaultOpts): string {
   const strict = opts.strict
 
@@ -58,6 +69,12 @@ export function DatemorphISOString(d: Datemorph, opts: DateParseOpts = DefaultOp
   return candidates[0].toISOString()
 }
 
+/**
+ * Creates a native Date object at time 00:00:00.000Z with given DateParts
+ *
+ * @param {DateParts}     d       - the date to parse and convert
+ * @param {DateParseOpts} opts    - parsing options
+ */
 export function DateZFromDateParts(d: DateParts, opts: DateParseOpts = DefaultOpts): Date {
   const p = d['date-parts']
   if (p.length == 0) {
@@ -80,6 +97,14 @@ export function DateZFromDateParts(d: DateParts, opts: DateParseOpts = DefaultOp
   return new Date(Date.UTC(yr, moIdx, day))
 }
 
+/**
+ * Compare two dates only by year, month, and day-of-month
+ *
+ * @param {Date}  d1  - first date
+ * @param {Date}  d2  - second date
+ *
+ * @returns {boolean} if the two dates agree on the DateParts alone
+ */
 export function DateCompareTriple(d1: Date, d2: Date) {
   return (
     d1.getUTCFullYear() == d2.getUTCFullYear() &&
