@@ -1,4 +1,4 @@
-name: Test crossref API
+name: Unit tests
 
 on:
   push:
