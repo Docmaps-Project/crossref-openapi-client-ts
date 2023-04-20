@@ -20,6 +20,7 @@ const CLIENT = new CrossrefClient({
 test('Integration test: /works/$doi', async (t) => {
   t.timeout(15000, 'These tests make actual API calls; crossref may be slow.')
 
+  // https://api.crossref.org/works/10.3410/f.3011964.2691062
   const ExampleWork = await CLIENT.works.getWorks({doi: '10.3410/f.3011964.2691062'})
   t.is(ExampleWork.status, 'ok')
   t.is(ExampleWork.message.publisher, 'Faculty Opinions Ltd')
@@ -31,6 +32,16 @@ test('Integration test: /works/$doi', async (t) => {
         "asserted-by":"subject"
       }
     ]
+  })
+
+  t.deepEqual(ExampleWork.message.created, {
+    "date-parts":[[2012,8,21]],
+    "date-time":"2012-08-21T06:46:54Z",
+    "timestamp":1345531614000,
+  })
+
+  t.deepEqual(ExampleWork.message.published, {
+    "date-parts":[[2010,4,22]],
   })
 })
 
