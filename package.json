@@ -15,7 +15,9 @@
         "clean": "rm -Rf dist node_modules/ *.js",
         "build": "tsc",
         "prepare": "tsc",
-        "test": "tsc && node dist/index.js && ava"
+        "test": "tsc && node dist/index.js && ava",
+        "test:unit": "ava test/unit/",
+        "test:integration": "ava test/integration/"
     },
     "files": [
         "dist/",
@@ -37,8 +39,8 @@
         "@types/bluebird": "^3.5.33",
         "@types/node": "^12",
         "@types/request": "^2.48.8",
-        "openapi-typescript-codegen": "^0.24.0",
         "ava": "^5.2.0",
+        "openapi-typescript-codegen": "^0.24.0",
         "semantic-release": "^21.0.1",
         "ts-node": "^10.9.1",
         "typedoc": "^0.24.0",
