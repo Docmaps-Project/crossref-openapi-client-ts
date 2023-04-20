@@ -1,5 +1,5 @@
 import test from 'ava'
-import { CrossrefClient} from '../src'
+import { CrossrefClient} from '../../src'
 
 
 // TODO: improve this API in the client
@@ -17,9 +17,10 @@ const CLIENT = new CrossrefClient({
   }
 });
 
-test('Integration test: /works/$doi', async (t) => {
-  t.timeout(15000, 'These tests make actual API calls; crossref may be slow.')
+test('/works/$doi', async (t) => {
+  t.timeout(20000, 'These tests make actual API calls; crossref may be slow.')
 
+  // https://api.crossref.org/works/10.3410/f.3011964.2691062
   const ExampleWork = await CLIENT.works.getWorks({doi: '10.3410/f.3011964.2691062'})
   t.is(ExampleWork.status, 'ok')
   t.is(ExampleWork.message.publisher, 'Faculty Opinions Ltd')
@@ -32,9 +33,19 @@ test('Integration test: /works/$doi', async (t) => {
       }
     ]
   })
+
+  t.deepEqual(ExampleWork.message.created, {
+    "date-parts":[[2012,8,21]],
+    "date-time":"2012-08-21T06:46:54Z",
+    "timestamp":1345531614000,
+  })
+
+  t.deepEqual(ExampleWork.message.published, {
+    "date-parts":[[2010,4,22]],
+  })
 })
 
-test('Integration test: /works?...', async (t) => {
+test('/works?...', async (t) => {
   t.timeout(30000, 'These tests make actual API calls; crossref may be slow.')
   const MultiWorks = await CLIENT.works.getWorks1({
     rows: 2,

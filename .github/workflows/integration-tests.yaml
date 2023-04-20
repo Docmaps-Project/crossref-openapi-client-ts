@@ -1,7 +1,7 @@
-name: Test crossref API
+name: Integration tests
 
 on:
-  push:
+  pull_request:
     # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   workflow_call:
@@ -51,7 +51,7 @@ jobs:
         run: |
           pnpm docs:check;
 
-  nodejs_test:
+  api_integration_test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -97,4 +97,4 @@ jobs:
 
       - name: Test
         run: |
-          pnpm test;
+          pnpm test:integration;
