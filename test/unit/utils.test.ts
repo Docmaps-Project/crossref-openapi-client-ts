@@ -21,7 +21,7 @@ test('date utilities: DateParts only', async (t) => {
 
 test('date utilities: Inconsistent date, strict', async (t) => {
   t.throws(() => {
-    const result = U.DatemorphISOString(INCONSISTENT_DATE)
+    U.DatemorphISOString(INCONSISTENT_DATE)
   })
 })
 

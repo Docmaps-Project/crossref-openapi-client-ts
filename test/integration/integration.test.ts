@@ -1,5 +1,5 @@
 import test from 'ava'
-import { CreateCrossrefClient, CrossrefClient } from '../../src'
+import { CreateCrossrefClient } from '../../src'
 
 // TODO: improve this API in the client
 const CONTACT = 'docmaps@knowledgefutures.org'
