@@ -1,21 +1,10 @@
 import test from 'ava'
-import { CrossrefClient} from '../../src'
-
+import { CreateCrossrefClient, CrossrefClient } from '../../src'
 
 // TODO: improve this API in the client
 const CONTACT = 'docmaps@knowledgefutures.org'
-const AGENT = 'CrossrefOpenapiClientTs/1.0'
-const REPO = 'github.com/docmaps-project/crossref-openapi-client-ts'
-const PLATFORM = 'AVAJS'
 
-const CLIENT = new CrossrefClient({
-  // TODO hardcode this by extracting a constructor
-  BASE: 'https://api.crossref.org',
-  HEADERS: {
-    // to be polite; see https://api.crossref.org/swagger-ui/index.html#Etiquette
-    "User-Agent": `${AGENT} (${REPO}; mailto:${CONTACT}) ${PLATFORM}`
-  }
-});
+const CLIENT = CreateCrossrefClient({ politeMailto: CONTACT })
 
 test('/works/$doi', async (t) => {
   t.timeout(20000, 'These tests make actual API calls; crossref may be slow.')
