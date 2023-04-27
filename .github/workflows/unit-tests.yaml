@@ -55,3 +55,7 @@ jobs:
       - name: Test
         run: |
           pnpm test:unit;
+
+      - name: Lint
+        run: |
+          pnpm lint;

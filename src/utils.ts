@@ -16,7 +16,7 @@ export type DateParseOpts = {
 }
 
 const DefaultOpts: DateParseOpts = {
-  strict: true
+  strict: true,
 }
 
 /**
@@ -34,7 +34,7 @@ export function DatemorphISOString(d: Datemorph, opts: DateParseOpts = DefaultOp
   if (knownStr) {
     const date = new Date(knownStr)
     if (strict && !date) {
-      throw new Error("Unable to parse: malformed date-time and strict enabled")
+      throw new Error('Unable to parse: malformed date-time and strict enabled')
     }
     candidates.push(date)
   }
@@ -45,20 +45,20 @@ export function DatemorphISOString(d: Datemorph, opts: DateParseOpts = DefaultOp
     if (strict) {
       if (!date) {
         // I  believe this is only possible if `"timestamp":null` explicitly
-        throw new Error("Unable to parse: malformed timestamp and strict enabled")
+        throw new Error('Unable to parse: malformed timestamp and strict enabled')
       }
       if (candidates[0] && date.valueOf() != candidates[0].valueOf()) {
-        throw new Error("Unable to parse: timestamp does not match date-time and strict enabled")
+        throw new Error('Unable to parse: timestamp does not match date-time and strict enabled')
       }
     }
 
     candidates.push(date)
   }
 
-  const date = DateZFromDateParts({'date-parts': d['date-parts']}, opts)
+  const date = DateZFromDateParts({ 'date-parts': d['date-parts'] }, opts)
   for (const c in candidates) {
     if (strict && !DateCompareTriple(candidates[c], date)) {
-        throw new Error("Unable to parse: date-parts does not match and strict enabled")
+      throw new Error('Unable to parse: date-parts does not match and strict enabled')
     }
   }
   candidates.push(date)
@@ -78,21 +78,21 @@ export function DatemorphISOString(d: Datemorph, opts: DateParseOpts = DefaultOp
 export function DateZFromDateParts(d: DateParts, opts: DateParseOpts = DefaultOpts): Date {
   const p = d['date-parts']
   if (p.length == 0) {
-    throw new Error("Malformed DateParts: No parts found in DateParts")
+    throw new Error('Malformed DateParts: No parts found in DateParts')
   }
 
   if (p.length > 1 && opts.strict) {
-    throw new Error("Malformed DateParts: Multiple DateParts possibilities found")
+    throw new Error('Malformed DateParts: Multiple DateParts possibilities found')
   }
 
   const best = p[0]
   if (best.length != 3) {
-    throw new Error("Malformed DateParts: Must have exactly year, month, and day")
+    throw new Error('Malformed DateParts: Must have exactly year, month, and day')
   }
 
-  const yr=best[0]
-  const moIdx=best[1]-1
-  const day=best[2]
+  const yr = best[0]
+  const moIdx = best[1] - 1
+  const day = best[2]
 
   return new Date(Date.UTC(yr, moIdx, day))
 }
