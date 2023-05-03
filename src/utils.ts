@@ -85,16 +85,20 @@ export function DateZFromDateParts(d: DateParts, opts: DateParseOpts = DefaultOp
     throw new Error('Malformed DateParts: Multiple DateParts possibilities found')
   }
 
+  // choose the first dateparts in the list.
+  // TODO this is opinionated behavior and may need to adapt.
   const best = p[0]
-  if (best.length != 3) {
-    throw new Error('Malformed DateParts: Must have exactly year, month, and day')
+
+  switch (best.length) {
+      case 1:
+        return new Date(Date.UTC(best[0], 0, 1))
+      case 2:
+        return new Date(Date.UTC(best[0], best[1] - 1, 1))
+      case 3:
+        return new Date(Date.UTC(best[0], best[1] - 1, best[2]))
+      default:
+    throw new Error('Malformed DateParts: Must have 1, 2, or 3 parts')
   }
-
-  const yr = best[0]
-  const moIdx = best[1] - 1
-  const day = best[2]
-
-  return new Date(Date.UTC(yr, moIdx, day))
 }
 
 /**
