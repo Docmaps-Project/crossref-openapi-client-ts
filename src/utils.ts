@@ -90,14 +90,14 @@ export function DateZFromDateParts(d: DateParts, opts: DateParseOpts = DefaultOp
   const best = p[0]
 
   switch (best.length) {
-      case 1:
-        return new Date(Date.UTC(best[0], 0, 1))
-      case 2:
-        return new Date(Date.UTC(best[0], best[1] - 1, 1))
-      case 3:
-        return new Date(Date.UTC(best[0], best[1] - 1, best[2]))
-      default:
-    throw new Error('Malformed DateParts: Must have 1, 2, or 3 parts')
+    case 1:
+      return new Date(Date.UTC(best[0], 0, 1))
+    case 2:
+      return new Date(Date.UTC(best[0], best[1] - 1, 1))
+    case 3:
+      return new Date(Date.UTC(best[0], best[1] - 1, best[2]))
+    default:
+      throw new Error('Malformed DateParts: Must have 1, 2, or 3 parts')
   }
 }
 

@@ -20,7 +20,9 @@ test('date utilities: DateParts only', async (t) => {
 })
 
 test('date utilities: DateParts only with only year and month', async (t) => {
-  const result = U.DatemorphISOString({ 'date-parts': [CONSISTENT_DATE['date-parts'][0].slice(0,1)] })
+  const result = U.DatemorphISOString({
+    'date-parts': [CONSISTENT_DATE['date-parts'][0].slice(0, 1)],
+  })
   t.is(result, '2021-01-01T00:00:00.000Z')
 })
 
