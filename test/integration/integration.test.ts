@@ -2,7 +2,7 @@ import test from 'ava'
 import { CreateCrossrefClient } from '../../src'
 
 // TODO: improve this API in the client
-const CONTACT = 'docmaps@knowledgefutures.org'
+const CONTACT = 'docmaps+crossref-client-test@knowledgefutures.org'
 
 const CLIENT = CreateCrossrefClient({ politeMailto: CONTACT })
 
