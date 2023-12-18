@@ -16,6 +16,7 @@ const REPO = 'github.com/docmaps-project/crossref-openapi-client-ts'
  */
 export type CreateClientConfig = {
   base: string
+  bePolite: boolean
   politeMailto: string
   politePlatform: string
 }
@@ -23,6 +24,7 @@ export type CreateClientConfig = {
 export const ConfigDefaults: CreateClientConfig = {
   base: 'https://api.crossref.org',
   // to be polite; see https://api.crossref.org/swagger-ui/index.html#Etiquette
+  bePolite: true,
   politeMailto: 'not-provided',
   politePlatform: 'node',
 }
@@ -33,10 +35,15 @@ export function CreateCrossrefClient(config: Partial<CreateClientConfig>): Cross
     ...config,
   }
 
+  const headers = {}
+
+  // allow opting out of polite headers for certain buggy platforms
+  if (config.bePolite) {
+    headers['User-Agent'] = `${AGENT} (${REPO}; mailto:${c.politeMailto}) ${c.politePlatform}`
+  }
+
   return new CrossrefClient({
     BASE: c.base,
-    HEADERS: {
-      'User-Agent': `${AGENT} (${REPO}; mailto:${c.politeMailto}) ${c.politePlatform}`,
-    },
+    HEADERS: headers,
   })
 }
